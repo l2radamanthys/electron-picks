@@ -9,11 +9,30 @@ app.on('before-quit', () => {
 });
 
 app.on('ready', () => {
-  let win = new BrowserWindow()
+  let win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    title: 'Hola Mundo',
+    center: true,
+    maximizable: false,
+    show: false,
+  })
+
+  win.removeMenu() //borrar menu
+
+  win.once('ready-to-show', () => {
+    win.show()
+  });
+
+  win.on('move', () => {
+    const posicion = win.getPosition()
+    console.log(`la posicion es ${posicion}`)
+  })
+
   win.on('close', () => {
     win = null
     app.quit()
   })
-})
 
-// 
+  win.loadURL('https://devdocs.io')
+})
