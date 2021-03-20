@@ -24,15 +24,10 @@ app.on('ready', () => {
     win.show()
   });
 
-  win.on('move', () => {
-    const posicion = win.getPosition()
-    console.log(`la posicion es ${posicion}`)
-  })
-
   win.on('close', () => {
     win = null
     app.quit()
   })
 
-  win.loadURL('https://devdocs.io')
+  win.loadURL(`file://${__dirname}/renderer/index.html`)
 })
